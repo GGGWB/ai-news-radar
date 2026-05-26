@@ -88,6 +88,40 @@ NOISE_KEYWORDS = [
     "美食",
 ]
 
+FINANCE_KEYWORDS = [
+    "A股", "a股", "上证", "深证", "创业板", "科创板", "北交所", "沪深",
+    "股市", "股票", "大盘", "收盘", "开盘", "涨停", "跌停", "牛市", "熊市",
+    "证监会", "央行", "降息", "降准", "加息", "LPR", "逆回购", "MLF",
+    "国债", "基金", " ETF", "北向资金", "南向资金", "融资融券", "两融",
+    " IPO", "注册制", "退市", "分红", "派息", "业绩", "财报", "年报",
+    "季报", "半年报", "营收", "净利润", "毛利率", "市盈率", "市净率",
+    "ROE", "估值", "机构", "券商", "研报", "分析师", "增持", "减持",
+    "回购", "质押", "大宗交易", "龙虎榜", "主力资金", "外资", " QFII",
+    "沪深港通", "港股通", "恒生指数", "纳斯达克", "标普500", "道琼斯",
+    "中概股", "人民币汇率", " CPI", " PPI", "PMI", "GDP", "社融", "M2",
+    "信贷", "通胀", "通缩", "货币政策", "财政政策", "宏观", "利率",
+    "债券", "可转债", "期货", "期权", "量化", "对冲", "私募", "公募",
+    "资管", "理财", "信托", "险资", "金融监管", "板块", "概念股",
+    "龙头股", "白马股", "蓝筹股", "红利", "高股息", "打新", "申购",
+    "中签", "新股", "次新股", "停牌", "复牌", "交易所", "上市", "市值",
+    "成交量", "成交额", "换手率", "沪深300", "中证500", "中证1000",
+    "上证50", "创业板指", "科创50", "人民币", "美元指数", "汇率",
+    "商业银行", "农行", "工行", "建行", "中行", "交行", "招商银行",
+    "金融改革", "金融开放", "资本市场",
+]
+
+FINANCE_SOURCE_PRIORS = {
+    "eastmoney",
+    "finance_sina",
+    "finance_qq",
+    "wallstreetcn",
+    "cls",
+    "yicai",
+    "caixin",
+    "stcn",
+    "caijing",
+}
+
 COMMERCE_NOISE_KEYWORDS = [
     "淘宝",
     "天猫",
@@ -118,6 +152,21 @@ TOPHUB_ALLOW_KEYWORDS = [
     "机器人",
     "具身",
     "开源",
+    "东方财富",
+    "同花顺",
+    "雪球",
+    "华尔街见闻",
+    "财联社",
+    "第一财经",
+    "财经",
+    "金融",
+    "证券",
+    "基金",
+    "A股",
+    "股票",
+    "宏观",
+    "央行",
+    "投资",
 ]
 
 TOPHUB_BLOCK_KEYWORDS = [
@@ -207,6 +256,29 @@ def _result(
         "signals": signals or [],
         "noise": noise or [],
     }
+
+
+def is_finance_related(text: str, site_id: str, source: str) -> bool:
+    """Check if a record is related to A-share / finance topics."""
+    combined = f"{text} {source.lower()}".lower()
+    finance_hits = [k for k in FINANCE_KEYWORDS if k.lower() in combined]
+    if len(finance_hits) >= 2:
+        return True
+    # Single strong keyword match
+    strong = ["A股", "a股", "股市", "股票", "涨停", "跌停", "央行", "证监会", "降息", "降准",
+              "财报", "创业板", "科创板", "北向资金", "沪深300", "中证500", "券商", "板块"]
+    for s in strong:
+        if s in combined:
+            return True
+    # Finance source prior
+    if site_id in FINANCE_SOURCE_PRIORS or site_id in {"tophub", "newsnow", "buzzing", "iris"}:
+        # Check source name for finance keywords
+        source_l = source.lower()
+        for fk in ["财经", "金融", "证券", "基金", "A股", "股票", "东方财富", "华尔街",
+                   "财联社", "同花顺", "雪球", "投资", "宏观"]:
+            if fk in source_l:
+                return True
+    return False
 
 
 def score_ai_relevance(record: dict[str, Any]) -> dict[str, Any]:
@@ -326,7 +398,20 @@ def score_ai_relevance(record: dict[str, Any]) -> dict[str, Any]:
 
 
 def is_ai_related_record(record: dict[str, Any]) -> bool:
-    return bool(score_ai_relevance(record)["is_ai_related"])
+    """A record is kept if it is AI-related OR finance-related."""
+    ai_result = score_ai_relevance(record)
+    if ai_result["is_ai_related"]:
+        return True
+    # Check finance relevance
+    site_id = str(record.get("site_id") or "")
+    title = str(record.get("title") or "")
+    source = str(record.get("source") or "")
+    site_name = str(record.get("site_name") or "")
+    url = str(record.get("url") or "")
+    text = f"{title} {source} {site_name} {url}".lower()
+    if is_finance_related(text, site_id, source):
+        return True
+    return False
 
 
 def add_ai_relevance_fields(record: dict[str, Any]) -> dict[str, Any]:
@@ -338,4 +423,19 @@ def add_ai_relevance_fields(record: dict[str, Any]) -> dict[str, Any]:
     out["ai_relevance_reason"] = relevance["reason"]
     out["ai_signals"] = relevance["signals"]
     out["ai_noise"] = relevance["noise"]
+
+    # Also tag finance relevance
+    site_id = str(record.get("site_id") or "")
+    title = str(record.get("title") or "")
+    source = str(record.get("source") or "")
+    site_name = str(record.get("site_name") or "")
+    url = str(record.get("url") or "")
+    text = f"{title} {source} {site_name} {url}".lower()
+    out["finance_is_related"] = is_finance_related(text, site_id, source)
+    if out["finance_is_related"] and not out["ai_is_related"]:
+        out["ai_is_related"] = True
+        out["ai_label"] = "finance"
+        out["ai_relevance_reason"] = "finance_keyword_match"
+        out["ai_score"] = max(out["ai_score"], 0.7)
+
     return out

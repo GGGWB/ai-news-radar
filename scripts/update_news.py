@@ -1849,14 +1849,13 @@ def fetch_newsnow(session: requests.Session, now: datetime) -> list[RawItem]:
 
 
 def collect_all(session: requests.Session, now: datetime) -> tuple[list[RawItem], list[dict[str, Any]]]:
+    # Streamlined sources: AI-focused + Chinese aggregators (for finance filter)
     tasks = [
         ("official_ai", "Official AI Updates", fetch_official_ai_updates),
         ("aibreakfast", "AI Breakfast", fetch_ai_breakfast),
         ("followbuilders", "Follow Builders", fetch_follow_builders),
-        ("techurls", "TechURLs", fetch_techurls),
         ("buzzing", "Buzzing", fetch_buzzing),
         ("iris", "Info Flow", fetch_iris),
-        ("bestblogs", "BestBlogs", fetch_bestblogs),
         ("tophub", "TopHub", fetch_tophub),
         ("zeli", "Zeli", fetch_zeli),
         ("aihubtoday", "AI HubToday", fetch_ai_hubtoday),
@@ -2967,7 +2966,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Aggregate AI news updates from multiple sources")
     parser.add_argument("--output-dir", default="data", help="Directory for output JSON files")
     parser.add_argument("--window-hours", type=int, default=24, help="24h window size")
-    parser.add_argument("--archive-days", type=int, default=21, help="Keep archive for N days")
+    parser.add_argument("--archive-days", type=int, default=7, help="Keep archive for N days")
     parser.add_argument("--translate-max-new", type=int, default=80, help="Max new EN->ZH title translations per run")
     parser.add_argument("--rss-opml", default="", help="Optional OPML file path to include RSS sources")
     parser.add_argument("--rss-max-feeds", type=int, default=0, help="Optional max OPML RSS feeds to fetch (0 means all)")
