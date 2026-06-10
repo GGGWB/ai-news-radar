@@ -18174,5 +18174,12 @@
   "Soon, we intend to expand access to Mythos 5 through a broader trusted access program, both for defensive cybersecurity work and biomedical research.": "很快，我们打算通过更广泛的可信访问计划来扩大对 Mythos 5 的访问，既用于防御性网络安全工作，也用于生物医学研究。",
   "For a small group of cyber defenders and critical infrastructure providers, we are also launching Claude Mythos 5. Mythos 5 shares the same underlying model as Fable 5, but with the safeguards lifted in some areas.": "对于一小部分网络防御者和关键基础设施提供商，我们还推出了 Claude Mythos 5。Mythos 5 与《神鬼寓言 5》具有相同的底层模型，但在某些领域取消了防护措施。",
   "Do you use codex /goal occasionally or as your main way to get things done?": "您偶尔使用 codex /goal 还是将其作为完成工作的主要方式？",
-  "Playing codex like an orchestra. One /goal at a time. https://t.co/vlpypZu20A": "像管弦乐队一样演奏手抄本。一次一个/目标。 https://t.co/vlpypZu20A"
+  "Playing codex like an orchestra. One /goal at a time. https://t.co/vlpypZu20A": "像管弦乐队一样演奏手抄本。一次一个/目标。 https://t.co/vlpypZu20A",
+  "Show HN: macOS menu bar gauges for your Claude Code quota": "显示 HN：您的 Claude Code 配额的 macOS 菜单栏仪表",
+  "Dedicated security review command now available in Copilot CLI": "Copilot CLI 中现已提供专用安全审查命令",
+  "Artificial Intelligence Sneaks Into the World Cup Thanks to Google Gemini": "借助 Google Gemini，人工智能潜入世界杯",
+  "Notepad++ Zero-Click RCE via Path Traversal (CVE-2026-52884)": "Notepad++ 通过路径遍历进行零点击 RCE (CVE-2026-52884)",
+  "Port React Compiler to Rust": "将 React 编译器移植到 Rust",
+  "European sentiments towards the US hit an all-time low": "欧洲对美国的情绪跌至历史最低点",
+  "From data to decisions: how LSEG is scaling trusted AI": "从数据到决策：伦敦证券交易所集团如何扩展可信人工智能"
 }
