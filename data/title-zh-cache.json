@@ -20255,5 +20255,11 @@
   "In the next version of Claude Code: subagents run in the background by default, so you can keep talking to Claude while your subagents work If you want your agent to run in the foreground, just tell Claude": "在 Claude Code 的下一版本中：子代理默认在后台运行，因此您可以在子代理工作时继续与 Claude 对话如果您希望代理在前台运行，只需告诉 Claude",
   "Advanced Codex users. We shipped a replacement to coarse sandbox modes: reusable, inheritable permission profiles binding OS-enforced file read/write/deny rules (even **/*.env) to per-domain network + Unix sockets. Pl...": "高级法典用户。我们提供了粗沙箱模式的替代方案：可重用、可继承的权限配置文件将操作系统强制的文件读/写/拒绝规则（甚至 **/*.env）绑定到每个域网络 + Unix 套接字。请...",
   "ok for context this is non-lab workshops at 9am on a monday theres a competing @OpenAI workshop going on next door but here are the @snyksec , @Atlassian, @neo4j, @arizeai, @Akamai, @togethercompute rooms concurrently...": "好的，就上下文而言，这是周一上午 9 点举行的非实验室研讨会，隔壁有一个竞争性的 @OpenAI 研讨会，但这里同时有 @snyksec、@Atlassian、@neo4j、@arizeai、@Akamai、@togethercompute 房间...",
-  "Reading the Internals of PostgreSQL: Database Cluster, Databases, and Tables": "阅读 PostgreSQL 的内部结构：数据库集群、数据库和表"
+  "Reading the Internals of PostgreSQL: Database Cluster, Databases, and Tables": "阅读 PostgreSQL 的内部结构：数据库集群、数据库和表",
+  "microsoft / AI-For-Beginners": "微软 / AI 初学者",
+  "microsoft /      AI-For-Beginners": "微软 / AI 初学者",
+  "European digital ID wallets are a gift to Google and Apple": "欧洲数字身份钱包是送给谷歌和苹果的礼物",
+  "Bernie Sanders Saw This Coming": "伯尼·桑德斯预见到了这一点",
+  "Antares Achieves Criticality of Mark-0 Reactor": "Antares 实现了 Mark-0 反应堆的临界状态",
+  "I built a free I Ching oracle web app": "我构建了一个免费的易经甲骨文网络应用程序"
 }
