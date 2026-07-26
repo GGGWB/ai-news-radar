@@ -23320,5 +23320,9 @@
   "Elevated Errors for Opus 5": "Opus 5 的错误增加",
   "Ruff v0.16.0 – Significant new updates – 413 default rules up from 59": "Ruff v0.16.0 – 重要的新更新 – 默认规则从 59 条增加到 413 条",
   "W4ME Station – a WASM-4 runtime for Java ME phones": "W4ME Station – 用于 Java ME 手机的 WASM-4 运行时",
-  "MIT to become hotbed of AI video surveillance": "麻省理工学院将成为人工智能视频监控的温床"
+  "MIT to become hotbed of AI video surveillance": "麻省理工学院将成为人工智能视频监控的温床",
+  "An OpenAI model left notes about how to evade containment; we need more details": "OpenAI 模型留下了有关如何逃避收容的注释；我们需要更多细节",
+  "No Stack Overflow, No Autocomplete: What Coding Felt Like in the 80s": "没有堆栈溢出，没有自动完成：80 年代编码的感觉",
+  "AMD publishes machine-readable ISA so frontier models can write its GPU kernels": "AMD 发布机器可读 ISA，以便前沿模型可以编写其 GPU 内核",
+  "A shell colon does nothing. Use it anyway": "外壳冒号什么也不做。无论如何使用它"
 }
